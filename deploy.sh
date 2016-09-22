@@ -21,8 +21,9 @@ cd "$tmp_dir"
 git checkout "$target_branch" || git checkout --orphan "$target_branch"
 
 cp "../$stack_dist_dir/"*-*.tar.gz .
+git add .
 
-if [ -z `git diff --exit-code` ]; then
+if [ -z `git diff --cached --exit-code` ]; then
   echo 'nothing to commit'
   exit 0
 fi
@@ -30,7 +31,6 @@ fi
 git config user.name "$git_user"
 git config user.email "$git_email"
 
-git add .
 git commit -m "$git_commit_message"
 
 encrypted_key_var="encrypted_${encryption_label}_key"
