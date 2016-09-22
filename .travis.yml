@@ -1,0 +1,19 @@
+language: c
+
+sudo: false
+cache:
+  directories:
+    - ~/.stack
+    - ~/.local
+
+before_install:
+  - mkdir -p ~/.local/bin
+  - export PATH=~/.local/bin:$PATH
+  - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar -xzO --wildcards '*/stack' > ~/.local/bin/stack
+  - chmod a+x ~/.local/bin/stack
+
+install:
+  - stack setup --no-terminal
+
+script:
+  - stack test --no-terminal --skip-ghc-check
