@@ -19,11 +19,12 @@ rm -rf "$tmp_dir"
 git clone "$git_repo" "$tmp_dir"
 cd "$tmp_dir"
 git checkout "$target_branch" || git checkout --orphan "$target_branch"
+git reset --hard
 
 cp "../$stack_dist_dir/"*-*.tar.gz .
 git add .
 
-if [ -z `git diff --cached --exit-code` ]; then
+if git diff --cached --quiet --exit-code; then
   echo 'nothing to commit'
   exit 0
 fi
