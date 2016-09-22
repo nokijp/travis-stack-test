@@ -7,12 +7,17 @@ cache:
     - ~/.stack
     - ~/.local
 
+env:
+  global:
+    - ENCRYPTION_LABEL: 781a8c02ab27
+    - DEPLOY_USER_EMAIL: travisci@example.com
+
 addons:
   apt:
     sources:
       - hvr-ghc
     packages:
-      - ghc-7.10.2
+      - ghc-7.10.3
 
 before_install:
   - mkdir -p ~/.local/bin
@@ -25,3 +30,10 @@ install:
 
 script:
   - stack test --no-terminal --skip-ghc-check
+  - stack sdist --no-terminal --skip-ghc-check
+
+deploy:
+  provider: script
+  script: deploy.sh
+  on:
+    branch: master
