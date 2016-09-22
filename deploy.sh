@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 git_user='Travis CI'
 git_email="$DEPLOY_USER_EMAIL"
 git_commit_message='deploy to gh-pages'
