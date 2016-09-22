@@ -36,7 +36,7 @@ git commit -m "$git_commit_message"
 
 encrypted_key_var="encrypted_${encryption_label}_key"
 encrypted_iv_var="encrypted_${encryption_label}_iv"
-openssl aes-256-cbc -K "${!encrypted_key_var}" -iv "${!encrypted_iv_var}" -in deploy_key.enc -out deploy_key -d
+openssl aes-256-cbc -K "${!encrypted_key_var}" -iv "${!encrypted_iv_var}" -in ../deploy_key.enc -out deploy_key -d
 chmod 600 deploy_key
 eval "$(ssh-agent -s)"
 ssh-add deploy_key
