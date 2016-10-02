@@ -34,7 +34,7 @@ script:
 
 deploy:
   provider: script
-  script: curl -sSL https://raw.githubusercontent.com/nokijp/travis-stack-ghpages/master/deploy.sh | sh
+  script: curl -sSL https://raw.githubusercontent.com/nokijp/travis-stack-ghpages/master/deploy.sh | bash
   skip_cleanup: true
   on:
     branch: master
