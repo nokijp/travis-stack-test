@@ -30,11 +30,11 @@ install:
 
 script:
   - stack test --no-terminal --skip-ghc-check
-  - stack sdist --no-terminal --skip-ghc-check
+  - stack haddock --no-haddock-deps --no-terminal --skip-ghc-check
 
 deploy:
   provider: script
-  script: curl -sSL https://raw.githubusercontent.com/nokijp/travis-stack-ghpages/master/deploy.sh | bash
+  script: curl -sSL https://raw.githubusercontent.com/nokijp/travis-stack-ghpages/master/deploy-haddock.sh | bash
   skip_cleanup: true
   on:
     branch: master
